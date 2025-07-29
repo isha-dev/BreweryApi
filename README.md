@@ -18,7 +18,6 @@ This is a RESTful API built using ASP.NET Core 8. It consumes data from the Open
 ## Project Structure
 
 BreweryApi/
-|
 ├── Controllers/              # API endpoints
 ├── Services/                 # Business logic (e.g., BreweryService)
 ├── Models/                   # DTOs and EF Entities
@@ -96,7 +95,7 @@ Authorization: Bearer <your_token>
 ### Sample Token
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
-## 📃 Database
+##  Database
 
 SQLite database file: `Brewery.db`
 
