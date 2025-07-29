@@ -1,6 +1,9 @@
 ﻿using BreweryApi.Models;
 using BreweryApi.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace BreweryApi.Controllers
 {
@@ -15,15 +18,28 @@ namespace BreweryApi.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest request)
+        [HttpGet("login")]
+        public IActionResult Login()
         {
-            if (request.Username == "admin" && request.Password == "admin123")
+            if (!Request.Headers.ContainsKey("Authorization"))
+                return Unauthorized("Missing Authorization header");
+            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+
+            var credentialBytes = Convert.FromBase64String(authHeader.Parameter ?? "");
+            var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':', 2);
+            if (credentials.Length != 2)
+                return Unauthorized("Invalid credentials");
+
+            var username = credentials[0];
+            var password = credentials[1];
+
+            if (username == "admin" && password == "admin123")
             {
-                var token = _jwtService.GenerateToken(request.Username);
+                var token = _jwtService.GenerateToken(username);
                 return Ok(new { Token = token });
             }
-            return Unauthorized("Invalid credentials");
+            else
+                return Unauthorized("Invalid credentials");
         }
     }
 
