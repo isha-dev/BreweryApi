@@ -1,0 +1,6 @@
+@BreweryApi_HostAddress = http://localhost:5007
+
+GET {{BreweryApi_HostAddress}}/swagger/index.html/
+Accept: application/json
+
+###
