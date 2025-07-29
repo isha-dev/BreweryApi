@@ -85,7 +85,8 @@ API will be accessible at:
 * Navigate to `https://localhost:7204/swagger`
 * Try endpoints like:
 
-  * `GET /api/v1/breweries?search=brewery&sortBy=name`
+  * `POST /api/v1/breweries/GetBreweries`
+  * `POST /api/v1/Auth/login`
 * Use "Authorize" to input JWT token
 
 ### Postman Example:
