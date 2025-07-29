@@ -36,7 +36,6 @@ BreweryApi/
 | **Database**       | SQLite for local development; EF Core for ORM mapping.                        |
 | **Security**       | JWT Bearer tokens using ASP.NET Core authentication middleware.               |
 | **Error Handling** | Try/catch blocks with ILogger and global middleware.                          |
-| **Performance**    | Async/await, pagination support, caching.                                     |
 
 
 ##  Prerequisites
@@ -86,7 +85,7 @@ API will be accessible at:
 * Try endpoints like:
 
   * `POST /api/v1/breweries/GetBreweries`
-  * `POST /api/v1/Auth/login`
+  * `GET /api/v1/Auth/login`
 * Use "Authorize" to input JWT token
 
 ### Postman Example:
